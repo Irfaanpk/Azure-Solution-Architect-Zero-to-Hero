@@ -1,4 +1,4 @@
-# 1.1 Introduction to Solution Architecture
+# 1 Introduction to Solution Architecture
 
 ## 📖 Overview
 
