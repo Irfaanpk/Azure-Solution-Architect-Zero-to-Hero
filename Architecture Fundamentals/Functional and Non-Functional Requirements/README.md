@@ -1,4 +1,3 @@
-````markdown
 # Architecture Decision Making
 
 ## 📖 Overview
@@ -1579,4 +1578,3 @@ In the next topic, we will explore **Architecture Trade-offs**, including how de
 📂 **[Next → Architecture Trade-offs](../Architecture%20Trade-offs/)**
 
 ---
-````
