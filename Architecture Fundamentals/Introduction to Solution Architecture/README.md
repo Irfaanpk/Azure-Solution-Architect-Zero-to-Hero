@@ -994,4 +994,4 @@ That decision-making process will be covered in the upcoming Fundamentals topics
 
 Now that we understand **what solution architecture is**, the next topic focuses on the person responsible for creating and guiding that architecture.
 
-➡️ **Next: [1.2 Solutions Architect Role and Responsibilities](../1.2-Solutions-Architect-Role-and-Responsibilities/)**
+➡️ **Next: [1.2 Solutions Architect Role and Responsibilities](../Solutions-Architect-Role-and-Responsibilities/)**
