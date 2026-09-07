@@ -54,29 +54,28 @@ By the end of this course, you will be able to:
 
 ## 📚 Table of Contents
 
+## 📚 Table of Contents
+
 ## 1. Architecture Fundamentals
 
-This section introduces the fundamentals of solution architecture and the mindset required to design Azure solutions. It covers business and technical requirements, functional and non-functional requirements, architecture decisions, trade-offs, scalability, availability, reliability, performance, security, and cost considerations.
+This section introduces the core concepts of solution architecture and builds the foundation required for AZ-305. It focuses on how architects understand problems, translate requirements into architecture, evaluate design options, and make decisions based on reliability, security, performance, cost, and operational needs.
 
 📂 **[Explore → Architecture Fundamentals](./Architecture%20Fundamentals/)**
 
 | # | Sub-Topic | Description |
 |---|-----------|-------------|
-| 1.1 | [Introduction to Solution Architecture](./Architecture%20Fundamentals/Introduction%20to%20Solution%20Architecture/) | What solution architecture is, its purpose, and the role of a Solutions Architect |
-| 1.2 | [Azure Solutions Architect Role](./Architecture%20Fundamentals/Azure%20Solutions%20Architect%20Role/) | Responsibilities, skills, design activities, and architecture decision-making |
-| 1.3 | [Business and Technical Requirements](./Architecture%20Fundamentals/Business%20and%20Technical%20Requirements/) | Translating business requirements into technical and architectural requirements |
-| 1.4 | [Functional and Non-Functional Requirements](./Architecture%20Fundamentals/Functional%20and%20Non-Functional%20Requirements/) | Understanding functional requirements and quality attributes such as availability, performance, security, and scalability |
-| 1.5 | [Architecture Trade-offs](./Architecture%20Fundamentals/Architecture%20Trade-offs/) | Balancing security, reliability, performance, complexity, and cost |
-| 1.6 | [Scalability and Elasticity](./Architecture%20Fundamentals/Scalability%20and%20Elasticity/) | Designing solutions that can scale with changing workload demands |
-| 1.7 | [Availability and Reliability](./Architecture%20Fundamentals/Availability%20and%20Reliability/) | Designing highly available and reliable Azure solutions |
-| 1.8 | [Resiliency](./Architecture%20Fundamentals/Resiliency/) | Designing solutions that can withstand failures and recover from them |
-| 1.9 | [Performance](./Architecture%20Fundamentals/Performance/) | Designing solutions to meet performance and latency requirements |
-| 1.10 | [Security by Design](./Architecture%20Fundamentals/Security%20by%20Design/) | Integrating security into architecture from the beginning |
-| 1.11 | [Cost-Aware Architecture](./Architecture%20Fundamentals/Cost-Aware%20Architecture/) | Designing solutions while considering cost and resource efficiency |
-| 1.12 | [Stateless vs Stateful Architecture](./Architecture%20Fundamentals/Stateless%20vs%20Stateful%20Architecture/) | Understanding state management and its architectural implications |
-| 1.13 | [Synchronous vs Asynchronous Architecture](./Architecture%20Fundamentals/Synchronous%20vs%20Asynchronous%20Architecture/) | Choosing communication patterns based on workload requirements |
-| 1.14 | [Single-Region vs Multi-Region](./Architecture%20Fundamentals/Single-Region%20vs%20Multi-Region/) | Comparing regional architecture strategies |
-| 1.15 | [Active-Active vs Active-Passive](./Architecture%20Fundamentals/Active-Active%20vs%20Active-Passive/) | Comparing multi-region availability and disaster recovery patterns |
+| 1.1 | [Introduction to Solution Architecture](./Architecture%20Fundamentals/Introduction%20to%20Solution%20Architecture/) | What solution architecture is, the purpose of architecture, architecture lifecycle, and how business problems are translated into technology solutions |
+| 1.2 | [Solutions Architect Role and Responsibilities](./Architecture%20Fundamentals/Solutions%20Architect%20Role%20and%20Responsibilities/) | Responsibilities of a Solutions Architect, stakeholder collaboration, architecture ownership, and the difference between architect, administrator, developer, and DevOps roles |
+| 1.3 | [Business and Technical Requirements](./Architecture%20Fundamentals/Business%20and%20Technical%20Requirements/) | Business, functional, non-functional, and technical requirements, constraints, assumptions, dependencies, priorities, and requirement traceability |
+| 1.4 | [Architecture Decision-Making](./Architecture%20Fundamentals/Architecture%20Decision-Making/) | Identifying solution options, defining evaluation criteria, comparing alternatives, analyzing risks, and selecting the most appropriate architecture |
+| 1.5 | [Architecture Quality Attributes](./Architecture%20Fundamentals/Architecture%20Quality%20Attributes/) | Reliability, security, performance, availability, scalability, maintainability, observability, recoverability, and other qualities that define a successful architecture |
+| 1.6 | [Architecture Design Principles](./Architecture%20Fundamentals/Architecture%20Design%20Principles/) | Design for failure, least privilege, defense in depth, Zero Trust, loose coupling, separation of concerns, stateless design, automation, fault isolation, and design for change |
+| 1.7 | [Architecture Patterns and Styles](./Architecture%20Fundamentals/Architecture%20Patterns%20and%20Styles/) | N-tier, monolithic, modular monolith, microservices, serverless, API-centric, event-driven, synchronous, asynchronous, queue-based, and publish-subscribe architectures |
+| 1.8 | [Scalability, Availability and Resiliency](./Architecture%20Fundamentals/Scalability%2C%20Availability%20and%20Resiliency/) | Scalability, elasticity, high availability, resiliency, fault tolerance, failure handling, recovery, and designing systems to continue operating during failures |
+| 1.9 | [Architecture Trade-offs](./Architecture%20Fundamentals/Architecture%20Trade-offs/) | Cost vs availability, performance vs cost, security vs usability, consistency vs availability, complexity vs flexibility, and other architectural trade-offs |
+| 1.10 | [Architecture Documentation and ADRs](./Architecture%20Fundamentals/Architecture%20Documentation%20and%20ADRs/) | Architecture diagrams, logical and physical views, data and network flows, Architecture Decision Records, design documentation, reviews, and communicating architectural decisions |
+
+---
 
 ---
 
