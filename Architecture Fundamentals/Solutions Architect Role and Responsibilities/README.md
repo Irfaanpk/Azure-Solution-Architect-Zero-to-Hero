@@ -989,4 +989,4 @@ This mindset is more valuable than simply memorizing Azure services.
 
 Now that we understand **the role of a Solutions Architect**, the next step is learning how architects identify and structure the requirements that drive architecture decisions.
 
-➡️ **Next: [1.3 Business and Technical Requirements](../Business-and-Technical-Requirements/)**
+➡️ **Next: [Business and Technical Requirements](../Business-and-Technical-Requirements/)**
