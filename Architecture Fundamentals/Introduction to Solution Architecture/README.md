@@ -1,43 +1,195 @@
 # Introduction to Solution Architecture
 
-## 📖 Overview
+## 📌 Overview
 
-**Solution Architecture** is the process of designing a complete technology solution that satisfies business and technical requirements.
+Solution architecture is the process of designing a complete technology solution that solves a **business problem** while satisfying technical, security, operational, performance, availability, and cost requirements.
 
-A Solutions Architect does not simply choose Azure services. The architect evaluates the **business problem, requirements, constraints, risks, security, reliability, performance, scalability, and cost** before deciding how the solution should be designed.
+A Solutions Architect looks at the system as a **whole** rather than focusing on only one Azure service.
 
-In Azure, solution architecture means translating business requirements into an architecture that uses the appropriate Azure services, technologies, and design patterns.
-
-The goal is not:
+The goal is not simply:
 
 > "Which Azure service should I use?"
 
-The goal is:
+The real question is:
 
-> "What solution should I design, why should I design it this way, and which Azure services best satisfy the requirements?"
+> **"What architecture will best solve the business problem and meet all required constraints?"**
+
+A solution may involve multiple Azure services working together.
+
+For example:
+
+```text
+Business Requirement
+        ↓
+Understand the Problem
+        ↓
+Identify Requirements
+        ↓
+Design Architecture
+        ↓
+Select Appropriate Services
+        ↓
+Evaluate Trade-offs
+        ↓
+Implement
+        ↓
+Monitor & Improve
+```
 
 ---
 
-## 🎯 What is Solution Architecture?
+## 1. What is Solution Architecture?
 
-Solution architecture is the **high-level design of a complete technology solution**.
+Solution architecture defines the **structure, components, relationships, and interactions** of a technology solution.
 
-It defines:
+It describes:
 
 - What components are required
 - How components communicate
-- Where components should run
-- How data should be stored
-- How users and applications authenticate
-- How resources should be secured
-- How the solution should scale
-- How failures should be handled
-- How the solution should be monitored
-- How the solution should be recovered
-- How much the solution will cost
-- How the solution can evolve over time
+- Where components are deployed
+- How users access the system
+- How data flows through the system
+- How identity and security are handled
+- How the system scales
+- How failures are handled
+- How the system is monitored
+- How the solution meets business requirements
 
-A solution architecture connects **business requirements** with **technical implementation**.
+A solution architecture provides the **technical blueprint** before implementation begins.
+
+### Example
+
+Suppose a company wants to build an online shopping platform.
+
+A basic architecture might look like:
+
+```text
+                    Users
+                      │
+                      ▼
+                Azure Front Door
+                      │
+                      ▼
+             Application Gateway
+                      │
+                      ▼
+                Web Application
+                      │
+             ┌────────┴────────┐
+             ▼                 ▼
+        Application        Azure Cache
+          Services             │
+             │                 │
+             └────────┬────────┘
+                      ▼
+                Azure SQL
+                      │
+                      ▼
+                Blob Storage
+```
+
+The architect must determine:
+
+- How users connect
+- How traffic is distributed
+- Where the application runs
+- How the application accesses data
+- How the system handles failures
+- How the application scales
+- How sensitive data is protected
+- How the architecture is monitored
+- How much the solution will cost
+
+The architecture is therefore much more than selecting a single Azure service.
+
+---
+
+# 2. Why Do We Need Solution Architecture?
+
+Without proper architecture, organizations can create systems that work initially but become difficult to:
+
+- Scale
+- Secure
+- Maintain
+- Monitor
+- Recover
+- Operate
+- Modify
+- Control in cost
+
+A good architecture attempts to solve these problems **before they become production problems**.
+
+### Without Architecture
+
+```text
+Business Requirement
+       ↓
+Developer/Admin
+       ↓
+Choose Services Quickly
+       ↓
+Build Application
+       ↓
+Production
+       ↓
+Problems
+ ├── Performance
+ ├── Security
+ ├── High Cost
+ ├── Downtime
+ └── Difficult Maintenance
+```
+
+### With Architecture
+
+```text
+Business Requirement
+       ↓
+Requirements Analysis
+       ↓
+Architecture Design
+       ↓
+Service Selection
+       ↓
+Security & Reliability Review
+       ↓
+Cost & Performance Review
+       ↓
+Implementation
+       ↓
+Production
+       ↓
+Continuous Improvement
+```
+
+Architecture helps identify important problems **before implementation**.
+
+---
+
+# 3. Business Problem → Technology Solution
+
+One of the most important concepts for a Solutions Architect is understanding that architecture starts with the **business problem**, not the Azure service.
+
+For example:
+
+### Business Problem
+
+A company has an e-commerce application running in a single data center.
+
+The company wants:
+
+- Global customers
+- Higher availability
+- Better performance
+- Automatic scaling
+- Secure access
+- Disaster recovery
+
+The architect should not immediately say:
+
+> "Let's use Azure Kubernetes Service."
+
+Instead, the architect first understands the requirements.
 
 ```text
 Business Problem
@@ -46,1314 +198,800 @@ Business Requirements
        ↓
 Technical Requirements
        ↓
-Architecture Design
+Architecture Options
        ↓
-Azure Service Selection
+Service Selection
        ↓
-Security + Reliability + Performance
-       ↓
-Cost + Operations
+Architecture
        ↓
 Implementation
 ```
 
----
-
-## 🏢 Business Problem → Technology Solution
-
-A Solutions Architect starts with the **business problem**, not with Azure services.
-
-### Example
-
-A company wants to build an online shopping platform.
-
-The business requirements might be:
-
-- Customers should access the application globally
-- The application must remain available during failures
-- Traffic can increase significantly during sales
-- Customer data must be protected
-- The company must meet compliance requirements
-- The system should recover quickly after a disaster
-- Infrastructure costs should be controlled
-
-The architect converts these business requirements into technical requirements.
-
-```text
-Business Requirement
-        ↓
-Technical Requirement
-        ↓
-Architecture Decision
-        ↓
-Azure Service
-```
-
-### Example Requirement Mapping
-
-| Business Requirement | Technical Requirement | Architecture Decision |
-|---|---|---|
-| Global customers | Global application access | Multi-region architecture |
-| High availability | Eliminate single points of failure | Zone/region redundancy |
-| Large traffic spikes | Horizontal scalability | Autoscaling |
-| Protect customer data | Strong security controls | Identity + encryption + network security |
-| Fast recovery | Defined RPO/RTO | Disaster recovery architecture |
-| Control costs | Efficient resource utilization | Right-sizing + autoscaling |
-
-The Azure services are selected **after understanding the requirements**.
+This is the fundamental mindset of solution architecture.
 
 ---
 
-## 🧠 Solution Architecture vs Azure Services
+# 4. Architecture Is Bigger Than Azure Services
 
-A common mistake when learning Azure is to think:
+Azure provides thousands of services and features.
 
-> "I need to learn every Azure service."
+Knowing Azure services is important, but knowing **when and why to use them** is more important for an architect.
 
-A Solutions Architect instead thinks:
+For example, a requirement may be:
 
-> "I need to understand the problem and select the right service."
+> "The application must support millions of users and automatically scale."
 
-For example, suppose an application needs a database.
+Possible architectural options could include:
 
-The question should not simply be:
+- Azure Virtual Machines
+- VM Scale Sets
+- Azure App Service
+- Azure Container Apps
+- Azure Kubernetes Service
+- Azure Functions
 
-> "Should I use Azure SQL?"
-
-Instead, the architect should evaluate:
+The architect evaluates these options based on the actual requirements.
 
 ```text
-What type of data?
-        ↓
-Relational or NoSQL?
-        ↓
-Transaction requirements?
-        ↓
-Performance requirements?
-        ↓
-Expected data volume?
-        ↓
-Scaling requirements?
-        ↓
-Availability requirements?
-        ↓
-Geographical requirements?
-        ↓
-Consistency requirements?
-        ↓
-Security requirements?
-        ↓
-Budget?
-        ↓
-Select Database
+Requirement
+     │
+     ├── Workload type
+     ├── Scale
+     ├── Availability
+     ├── Performance
+     ├── Security
+     ├── Operations
+     └── Cost
+             │
+             ▼
+      Service Options
+             │
+             ▼
+      Architecture Decision
 ```
 
-Possible solutions might include:
+The best service is not necessarily the most powerful service.
 
-- Azure SQL Database
-- Azure SQL Managed Instance
-- SQL Server on Azure VM
-- Azure Cosmos DB
-
-The correct choice depends on the requirements.
+It is the service that best fits the **requirements and constraints**.
 
 ---
 
-## 🏗️ What Does a Solutions Architect Design?
+# 5. Architecture vs Design vs Implementation
 
-A Solutions Architect may be responsible for designing multiple layers of a solution.
+These terms are related but not identical.
+
+## Architecture
+
+Architecture defines the **high-level structure and major decisions**.
+
+Example:
 
 ```text
-                    Solution Architecture
-                           │
-        ┌──────────────────┼──────────────────┐
-        │                  │                  │
-     Identity           Network            Compute
-        │                  │                  │
-   Authentication      Connectivity       Applications
-   Authorization       Security           Containers
-   RBAC                 Routing            VMs
-        │                  │                  │
-        └──────────────────┼──────────────────┘
-                           │
-                    Data & Storage
-                           │
-                ┌──────────┼──────────┐
-                │          │          │
-             Database    Storage    Analytics
-                │          │          │
-                └──────────┼──────────┘
-                           │
-                Security & Governance
-                           │
-                Monitoring & Operations
-                           │
-                Availability & DR
-                           │
-                           Cost
+Users
+  ↓
+Front Door
+  ↓
+Application Layer
+  ↓
+Database
+  ↓
+Storage
 ```
 
-A good architecture considers the solution **as a whole** rather than designing each component independently.
+It answers:
+
+> "What major components should exist and how should they interact?"
 
 ---
 
-## 🔑 Key Responsibilities of a Solutions Architect
+## Design
 
-A Solutions Architect commonly performs the following activities.
-
-### 1. Understand Business Requirements
-
-The architect first understands:
-
-- Business objectives
-- Users
-- Workloads
-- Business processes
-- Expected growth
-- Compliance requirements
-- Budget
-- Business risks
-
-The architect should understand **what the business is trying to achieve** before discussing technology.
-
-### 2. Identify Technical Requirements
-
-Business requirements are translated into technical requirements.
-
-```text
-Business Requirement:
-Application must always be available.
-
-Technical Requirement:
-Application must tolerate infrastructure failures.
-```
-
-```text
-Business Requirement:
-Application must support 1 million users.
-
-Technical Requirement:
-Architecture must horizontally scale.
-```
-
-```text
-Business Requirement:
-Customer data must be protected.
-
-Technical Requirement:
-Implement strong identity, authorization, encryption,
-network security, and data protection.
-```
-
-### 3. Identify Constraints
-
-Architectural decisions are also affected by constraints.
-
-Common constraints include:
-
-- Budget
-- Existing infrastructure
-- Existing applications
-- Team skills
-- Compliance requirements
-- Regulatory requirements
-- Time-to-market
-- Technology limitations
-- Data residency
-- Existing vendor dependencies
+Design provides more detailed decisions about how individual components will work.
 
 For example:
 
 ```text
-Requirement:
-Modernize an existing application.
-
-Constraint:
-Application depends on an old database version.
-
-Architecture:
-Migration strategy must consider database compatibility.
+Application Layer
+ ├── Web Application
+ ├── API
+ ├── Cache
+ └── Messaging
 ```
 
-Constraints can significantly influence the final architecture.
+It answers:
 
-### 4. Design the Architecture
-
-The architect defines:
-
-- Components
-- Relationships
-- Data flows
-- Network flows
-- Dependencies
-- Security boundaries
-- Availability boundaries
-- Scaling mechanisms
-
-The architecture should show how all major components work together.
-
-### 5. Select Azure Services
-
-Services are selected based on requirements.
-
-For example:
-
-```text
-Requirement
-     ↓
-Global HTTP Application
-     ↓
-Global Traffic Management
-     ↓
-Azure Front Door
-```
-
-Another example:
-
-```text
-Requirement
-     ↓
-Private access to Azure PaaS service
-     ↓
-Private connectivity
-     ↓
-Private Endpoint
-```
-
-The important part is understanding **why** the service was selected.
+> "How should each part of the architecture be designed?"
 
 ---
 
-## ⚖️ Architecture Trade-offs
+## Implementation
 
-There is rarely a perfect architecture.
+Implementation is where the actual solution is built.
 
-Every architecture introduces trade-offs.
+Examples:
 
-```text
-Higher Availability
-        ↓
-More Redundancy
-        ↓
-More Resources
-        ↓
-Higher Cost
-```
-
-Another example:
+- Creating Azure resources
+- Configuring networking
+- Deploying applications
+- Creating databases
+- Configuring identity
+- Writing infrastructure code
+- Deploying application code
 
 ```text
-More Infrastructure Control
-        ↓
-More Infrastructure Management
-        ↓
-Higher Operational Complexity
+Architecture
+     ↓
+Design
+     ↓
+Implementation
 ```
 
-A Solutions Architect must understand these relationships and choose the most appropriate balance for the business.
+### Simple Example
 
-### Common Trade-offs
-
-| Decision | Benefit | Trade-off |
-|---|---|---|
-| Multi-region | Higher resilience | Higher cost and complexity |
-| Managed PaaS | Less administration | Less infrastructure control |
-| Microservices | Independent scaling and deployment | Higher operational complexity |
-| Caching | Better performance | Additional architecture complexity |
-| Strong consistency | More predictable data reads | Potential performance/latency impact |
-| Autoscaling | Handles changing workloads | Cost can increase during spikes |
-| Private connectivity | Better network isolation | Additional networking complexity |
-| More redundancy | Better availability | Higher cost |
-| Serverless | Reduced infrastructure management | Platform/runtime constraints |
-| Self-managed VM | Greater control | Higher operational responsibility |
-
-A good architecture explains **why the trade-off is acceptable**.
+| Level | Example |
+|---|---|
+| Architecture | Use a PaaS application platform |
+| Design | Separate frontend and backend services |
+| Implementation | Create App Service resources and deploy the application |
 
 ---
 
-## 🛡️ Architecture Quality Attributes
+# 6. Solution Architecture vs Software Architecture
 
-A solution should not only work.
+These concepts overlap but have different scopes.
 
-It should satisfy important **quality attributes**, also called **non-functional requirements**.
+### Software Architecture
 
-### Availability
+Primarily focuses on the internal structure of software.
 
-Availability describes how often a system is operational and accessible when required.
+Examples:
 
-```text
-Availability
-     ↓
-Can users access the application when they need it?
-```
+- Microservices
+- Monolith
+- Modular monolith
+- API design
+- Application components
+- Code dependencies
 
-### Reliability
+### Solution Architecture
 
-Reliability describes the ability of a system to consistently perform correctly and recover from failures.
-
-```text
-Failure
-   ↓
-Detection
-   ↓
-Recovery
-   ↓
-Normal Operation
-```
-
-### Scalability
-
-Scalability is the ability of a system to handle increasing workload.
+Looks at the **complete solution**.
 
 ```text
-More Users
-    ↓
-More Requests
-    ↓
-More Resources
+                 Solution Architecture
+                         │
+        ┌────────────────┼────────────────┐
+        ▼                ▼                ▼
+     Identity         Network          Security
+        │                │                │
+        └────────────────┼────────────────┘
+                         │
+                     Application
+                         │
+             ┌───────────┼───────────┐
+             ▼           ▼           ▼
+          Compute      Database    Storage
+                         │
+                         ▼
+                    Monitoring
 ```
 
-Scalability can be achieved through:
-
-- Vertical scaling
-- Horizontal scaling
-- Autoscaling
-- Distributed architecture
-
-### Elasticity
-
-Elasticity is the ability to automatically increase or decrease resources based on workload demand.
-
-```text
-Low Traffic
-    ↓
-Fewer Resources
-
-High Traffic
-    ↓
-More Resources
-```
-
-### Performance
-
-Important performance factors include:
-
-- Latency
-- Response time
-- Throughput
-- Processing capacity
-- Network performance
-- Database performance
-
-```text
-User Request
-     ↓
-Application
-     ↓
-Database
-     ↓
-Response
-```
-
-### Security
-
-Security protects:
-
-- Users
-- Applications
-- Data
-- Network traffic
-- Secrets
-- Infrastructure
-
-Security should be considered **from the beginning**, not added at the end.
-
-```text
-Identity
-   +
-Network Security
-   +
-Data Protection
-   +
-Application Security
-   +
-Monitoring
-   +
-Governance
-```
-
-### Resiliency
-
-Resiliency is the ability of a system to continue operating or recover when components fail.
-
-Possible failures include:
-
-- VM failure
-- Server failure
-- Availability Zone failure
-- Database failure
-- Network failure
-- Region failure
-
-A resilient architecture assumes that failures **will happen**.
-
-### Cost
-
-Cost is an important architectural consideration.
-
-The architect should consider:
-
-- Compute cost
-- Storage cost
-- Database cost
-- Networking cost
-- Licensing
-- Operational cost
-- Backup cost
-- Disaster recovery cost
-
-The objective is not always the **cheapest** architecture.
-
-The objective is to provide the required business value at an acceptable cost.
+A Solutions Architect considers how all these areas work together.
 
 ---
 
-## 🏗️ Architecture vs Implementation
+# 7. Solution Architecture vs Infrastructure Architecture
 
-Architecture and implementation are related but different activities.
+Infrastructure architecture focuses mainly on the infrastructure required to run workloads.
 
-### Architecture
+Examples:
 
-Architecture answers:
+- Virtual networks
+- Subnets
+- Routing
+- Firewalls
+- Virtual machines
+- Load balancers
+- Connectivity
+- Storage
 
-```text
-What should be built?
-Why should it be built?
-Which components are required?
-How should components interact?
-What are the alternatives?
-What are the trade-offs?
-```
-
-### Implementation
-
-Implementation answers:
+Solution architecture has a broader scope.
 
 ```text
-How exactly should it be deployed?
-Which configuration should be used?
-Which commands should be executed?
-Which infrastructure should be provisioned?
+Solution Architecture
+│
+├── Business Requirements
+├── Identity
+├── Security
+├── Network
+├── Compute
+├── Application
+├── Data
+├── Monitoring
+├── Business Continuity
+├── Governance
+└── Cost
 ```
+
+Infrastructure architecture is therefore one important part of the overall solution architecture.
+
+---
+
+# 8. Major Architecture Areas
+
+A cloud solution commonly contains several interconnected architecture areas.
+
+```text
+                    Solution
+                       │
+        ┌──────────────┼──────────────┐
+        │              │              │
+     Identity       Network        Security
+        │              │              │
+        └──────────────┼──────────────┘
+                       │
+                    Compute
+                       │
+                  Application
+                       │
+                     Data
+                       │
+               Monitoring
+                       │
+            Business Continuity
+                       │
+                    Governance
+                       │
+                     Cost
+```
+
+A Solutions Architect must understand how decisions in one area affect other areas.
 
 ### Example
 
-**Architecture Decision**
+Choosing a public database endpoint can affect:
 
-```text
-Use Azure Front Door to provide
-global application routing and availability.
-```
+- Network architecture
+- Security
+- Identity
+- Data protection
+- Compliance
 
-**Implementation**
-
-```text
-Create Front Door profile
-        ↓
-Configure endpoint
-        ↓
-Create origin group
-        ↓
-Configure health probes
-        ↓
-Configure routing
-        ↓
-Configure WAF policy
-```
-
-AZ-305 focuses heavily on the **architecture and design decision**.
-
-However, implementation knowledge is still important because an architect must understand whether a proposed architecture is technically practical.
+Therefore, architecture decisions cannot always be made independently.
 
 ---
 
-## 🧩 Architecture Layers
-
-A typical Azure solution can be viewed through multiple layers.
-
-```text
-┌─────────────────────────────────┐
-│          Users / Clients        │
-└───────────────┬─────────────────┘
-                ↓
-┌─────────────────────────────────┐
-│       Global / Edge Layer       │
-│       Front Door / CDN / WAF    │
-└───────────────┬─────────────────┘
-                ↓
-┌─────────────────────────────────┐
-│       Application Layer         │
-│    App Service / AKS / VMs      │
-└───────────────┬─────────────────┘
-                ↓
-┌─────────────────────────────────┐
-│       Integration Layer         │
-│ Service Bus / Event Grid / APIs │
-└───────────────┬─────────────────┘
-                ↓
-┌─────────────────────────────────┐
-│          Data Layer             │
-│ SQL / Cosmos DB / Storage       │
-└─────────────────────────────────┘
-```
-
-Supporting all layers:
-
-```text
-Identity
-Security
-Networking
-Monitoring
-Governance
-Backup
-Disaster Recovery
-Cost Management
-```
-
-These supporting capabilities should not be treated as an afterthought.
-
----
-
-## 🚫 Single Point of Failure
-
-A **Single Point of Failure (SPOF)** is a component whose failure can cause the entire solution or a critical part of it to fail.
-
-### Example
-
-```text
-Users
-  ↓
-Single VM
-  ↓
-Database
-```
-
-If the VM fails:
-
-```text
-Users
-  X
-Single VM ❌
-```
-
-The application becomes unavailable.
-
-A more resilient design could be:
-
-```text
-             ┌── VM 1 ──┐
-Users → LB ──┤          ├── Database
-             └── VM 2 ──┘
-```
-
-If VM 1 fails:
-
-```text
-VM 1 ❌
-   ↓
-Load Balancer
-   ↓
-VM 2 ✅
-```
-
-The application can continue operating.
-
----
-
-## 🌍 Regional Architecture
-
-### Single Region
-
-```text
-Users
-  ↓
-Azure Region
-  ↓
-Application
-  ↓
-Database
-```
-
-Advantages:
-
-- Simpler architecture
-- Lower complexity
-- Potentially lower cost
-
-Limitations:
-
-- Regional failure can affect the solution
-- Disaster recovery may require additional architecture
-
-### Multi-Region
-
-```text
-                    ┌── Region A ── Application
-Users → Global ─────┤
-                    └── Region B ── Application
-```
-
-Advantages:
-
-- Higher regional resilience
-- Global application availability
-- Better disaster recovery options
-
-Trade-offs:
-
-- Higher cost
-- More complexity
-- Data replication requirements
-- Traffic management requirements
-- More operational complexity
-
-The correct choice depends on the business requirements.
-
----
-
-## 🔄 Architecture Lifecycle
+# 9. Architecture Lifecycle
 
 Solution architecture is not a one-time activity.
 
+A solution evolves throughout its lifecycle.
+
 ```text
-Understand Requirements
-        ↓
-Assess Constraints
-        ↓
-Design Architecture
-        ↓
-Evaluate Alternatives
-        ↓
-Select Solution
-        ↓
-Implement
-        ↓
-Monitor
-        ↓
-Review
-        ↓
-Improve
+Requirements
+     ↓
+Architecture
+     ↓
+Design
+     ↓
+Implementation
+     ↓
+Testing
+     ↓
+Deployment
+     ↓
+Operations
+     ↓
+Monitoring
+     ↓
+Optimization
+     ↓
+Change
+     ↓
+Architecture Update
 ```
 
-Architectures evolve as:
+An architect may need to revisit the architecture when:
 
 - Business requirements change
-- Workloads grow
-- Technology changes
-- Security requirements change
-- Costs change
+- User traffic increases
+- New security requirements appear
+- Costs become too high
+- A service reaches its limitations
 - New Azure capabilities become available
+- The organization expands into new regions
+- Regulations change
 
-Therefore, architecture should be continuously reviewed and improved.
-
----
-
-## 🧠 Architect's Mindset
-
-A Solutions Architect should continuously ask:
-
-### Requirements
-
-> What does the business actually need?
-
-### Users
-
-> Who will use the solution?
-
-### Scale
-
-> How many users and requests should it support?
-
-### Availability
-
-> What happens if a component fails?
-
-### Reliability
-
-> How will the system recover?
-
-### Security
-
-> Who can access the system and data?
-
-### Performance
-
-> What latency and throughput are required?
-
-### Data
-
-> Where should the data live and how should it be protected?
-
-### Cost
-
-> Is the architecture financially practical?
-
-### Operations
-
-> How will the system be monitored and maintained?
-
-### Disaster Recovery
-
-> What happens if an entire Azure region becomes unavailable?
-
-### Future Growth
-
-> Can the architecture evolve without requiring a complete redesign?
+Good architecture is therefore **designed for change**.
 
 ---
 
-## 📝 Example: Simple Architecture Decision
+# 10. Cloud Solution Architecture
 
-### Requirement
+Cloud architecture introduces additional design possibilities compared with traditional on-premises environments.
 
-A company has a web application that must support unpredictable traffic.
-
-### Possible Options
+In an on-premises environment, an organization may need to purchase and maintain:
 
 ```text
-Option 1 → Single VM
-Option 2 → VM Scale Sets
-Option 3 → App Service
-Option 4 → Container Apps
+Physical Servers
+      │
+      ├── Networking
+      ├── Storage
+      ├── Power
+      ├── Cooling
+      └── Data Center
 ```
 
-### Evaluation
+In Azure, many infrastructure capabilities can be consumed as cloud services.
 
-| Requirement | VM | VMSS | App Service | Container Apps |
-|---|---|---|---|---|
-| Managed platform | ❌ | ❌ | ✅ | ✅ |
-| Autoscaling | Limited | ✅ | ✅ | ✅ |
-| OS management | Required | Required | Managed | Managed |
-| Container support | Possible | Possible | ✅ | ✅ |
-| Operational complexity | High | High | Low | Medium |
+```text
+Azure
+ │
+ ├── Compute
+ ├── Networking
+ ├── Storage
+ ├── Databases
+ ├── Identity
+ ├── Security
+ ├── Monitoring
+ └── Integration
+```
 
-The architect should evaluate:
+The architect therefore needs to decide:
 
-- Application type
-- Deployment model
-- Team skills
-- Scaling requirements
-- Security requirements
-- Cost
-- Operational requirements
-- Availability requirements
+> Which responsibilities should remain with the organization and which should be delegated to managed Azure services?
 
-Only then should the final service be selected.
+This is one of the major architectural decisions in cloud computing.
 
 ---
 
-## 🔍 Architecture Decision Process
+# 11. Azure Solution Architecture
+
+Azure solution architecture means designing solutions using Azure capabilities to satisfy business and technical requirements.
+
+A typical Azure solution can look like:
 
 ```text
-1. Understand the Requirement
-          ↓
-2. Identify Constraints
-          ↓
-3. Define Technical Requirements
-          ↓
-4. Identify Possible Solutions
-          ↓
-5. Compare Alternatives
-          ↓
-6. Analyze Trade-offs
-          ↓
-7. Select the Best-Fit Solution
-          ↓
-8. Validate Security
-          ↓
-9. Validate Reliability
-          ↓
-10. Validate Performance
-          ↓
-11. Validate Cost
-          ↓
-12. Document the Decision
+                         Internet
+                            │
+                            ▼
+                     Azure Front Door
+                            │
+                            ▼
+                  Application Gateway
+                            │
+                            ▼
+                  Application Platform
+                  ┌─────────┴─────────┐
+                  ▼                   ▼
+                Cache              Messaging
+                  │                   │
+                  └─────────┬─────────┘
+                            ▼
+                         Database
+                            │
+                            ▼
+                         Storage
+
+        ┌──────────────────────────────────────┐
+        │ Identity • Security • Monitoring      │
+        │ Governance • Backup • Cost Management │
+        └──────────────────────────────────────┘
 ```
 
-The selected solution should satisfy the **most important business requirements** rather than simply being the most advanced technology.
+The architect determines how these services should work together.
 
 ---
 
-## 🧱 Avoid Over-Engineering
+# 12. The Role of Architecture in AZ-305
 
-A Solutions Architect should avoid designing a solution that is unnecessarily complicated.
+AZ-305 is fundamentally about **designing solutions**, not simply memorizing Azure services.
 
-For example, a small internal application may not require:
+The architect is expected to evaluate requirements and select appropriate Azure solutions.
+
+A typical architecture question can be approached like this:
 
 ```text
-Global Front Door
-        +
-Multi-Region AKS
-        +
-Multiple Databases
-        +
-Complex Event Streaming
-        +
-Advanced Service Mesh
+Read Scenario
+     ↓
+Understand Business Goal
+     ↓
+Identify Requirements
+     ↓
+Identify Constraints
+     ↓
+Identify Important Priorities
+     ↓
+Determine Architecture
+     ↓
+Compare Azure Services
+     ↓
+Select Best Option
+     ↓
+Validate Against Requirements
 ```
 
-If the actual requirement is:
+The important question is:
 
-> "A small internal application used by 100 employees."
+> **Why is this service the right choice for this requirement?**
 
-A simpler architecture may be more appropriate.
+Not:
+
+> **What does this service do?**
+
+---
+
+# 13. AZ-104 vs AZ-305 vs DevOps
+
+These areas complement each other but have different focuses.
+
+| Area | Main Question |
+|---|---|
+| AZ-104 | How do I administer and manage Azure? |
+| AZ-305 | How do I design an Azure solution? |
+| DevOps | How do I automate, deploy, and operate software delivery? |
+
+### Example
+
+Suppose a company needs a highly available web application.
+
+An **Azure Administrator** may focus on:
+
+- Creating resources
+- Configuring networking
+- Managing identities
+- Monitoring resources
+- Managing backups
+
+A **Solutions Architect** focuses on:
+
+- Selecting the architecture
+- Choosing the right Azure services
+- Designing high availability
+- Designing disaster recovery
+- Designing security
+- Evaluating cost
+- Making architectural trade-offs
+
+A **DevOps Engineer** focuses on:
+
+- CI/CD
+- Infrastructure as Code
+- Automated deployments
+- Release strategies
+- Automation
+- Development and operations workflows
 
 ```text
-Users
+             Business Requirement
+                     │
+                     ▼
+            Solutions Architect
+                     │
+             Architecture Design
+                     │
+        ┌────────────┴────────────┐
+        ▼                         ▼
+ Azure Administrator          DevOps Engineer
+        │                         │
+ Infrastructure & Operations   Automation & Delivery
+```
+
+In real-world projects, all three areas work together.
+
+---
+
+# 14. Architecture Thinking
+
+A Solutions Architect should think in terms of **requirements, relationships, dependencies, risks, and outcomes**.
+
+Instead of asking:
+
+> "Which service should I deploy?"
+
+Ask:
+
+```text
+What problem am I solving?
+        ↓
+What does the business need?
+        ↓
+What technical requirements exist?
+        ↓
+What constraints exist?
+        ↓
+What architecture options are available?
+        ↓
+What are the risks?
+        ↓
+What are the trade-offs?
+        ↓
+Which architecture provides the best overall outcome?
+```
+
+This mindset is more important than memorizing individual services.
+
+---
+
+# 15. Example: Designing an E-Commerce Platform
+
+Imagine a company wants an online shopping platform.
+
+### Business Goals
+
+- Customers should access the application globally
+- Application should remain available during failures
+- Traffic should scale automatically
+- Customer data must be protected
+- Orders should not be lost
+- Operations should be monitored
+- Infrastructure cost should be controlled
+
+The architect begins with the requirements rather than immediately selecting services.
+
+```text
+                    Global Users
+                         │
+                         ▼
+                  Global Entry Point
+                         │
+                         ▼
+                  Web/API Layer
+                         │
+             ┌───────────┼───────────┐
+             ▼           ▼           ▼
+           Cache      Messaging   Application
+                                     │
+                         ┌───────────┴───────────┐
+                         ▼                       ▼
+                      Database                Storage
+                         │
+                         ▼
+                    Backup / DR
+
+        Identity + Security + Monitoring + Governance
+```
+
+At this stage, the architect is defining the **solution structure**.
+
+Detailed service selection and trade-off analysis come later.
+
+---
+
+# 16. Architecture Is About Relationships
+
+An architect should not evaluate services in isolation.
+
+For example:
+
+```text
+Application
+    │
+    ├── Identity
+    │
+    ├── Network
+    │
+    ├── Security
+    │
+    ├── Database
+    │
+    ├── Storage
+    │
+    ├── Messaging
+    │
+    └── Monitoring
+```
+
+Changing one component can affect the others.
+
+### Example
+
+If the database is moved from public access to private access:
+
+```text
+Database
+   │
+   └── Private Endpoint
+           │
+           ▼
+        VNet
+           │
+           ├── DNS
+           ├── Routing
+           ├── Network Security
+           └── Application Connectivity
+```
+
+A seemingly simple database decision can therefore create network, DNS, security, and identity considerations.
+
+This is why solution architecture requires a **system-wide view**.
+
+---
+
+# 17. Architecture Is a Continuous Engineering Activity
+
+Architecture does not stop when the application goes live.
+
+After deployment, architects and engineering teams may discover:
+
+- Unexpected traffic patterns
+- Performance bottlenecks
+- Higher-than-expected costs
+- New security requirements
+- New business requirements
+- Service limitations
+
+The architecture may then need to evolve.
+
+```text
+Design
   ↓
-App Service
+Build
   ↓
-Azure SQL
+Deploy
+  ↓
+Observe
+  ↓
+Learn
+  ↓
+Improve
+  ↓
+Redesign
+  ↓
+Deploy
 ```
 
-> **More technology does not automatically mean better architecture.**
+This creates a continuous architecture lifecycle.
 
 ---
 
-## 📐 Architecture Principles
+# 18. Key Concepts to Remember
 
-### 1. Start With Requirements
+### Solution Architecture
 
-Do not start with Azure services.
+> The high-level design of a complete technology solution that satisfies business and technical requirements.
 
-Start with the business problem.
+### Solutions Architect
+
+> The person responsible for translating requirements into a practical, secure, reliable, scalable, and cost-effective solution design.
+
+### Architecture
+
+> Defines the major components, relationships, boundaries, and important technical decisions.
+
+### Design
+
+> Defines how individual components are structured and implemented.
+
+### Implementation
+
+> Builds and configures the actual solution.
+
+### Architecture Mindset
+
+> Start with the problem and requirements, then select the technology.
+
+---
+
+# 🧠 Architecture Mindset
+
+Always think:
 
 ```text
 Business Problem
-        ↓
+      ↓
 Requirements
-        ↓
-Architecture
-        ↓
-Services
+      ↓
+Constraints
+      ↓
+Architecture Options
+      ↓
+Service Selection
+      ↓
+Trade-offs
+      ↓
+Architecture Decision
+      ↓
+Implementation
+      ↓
+Operations
+      ↓
+Continuous Improvement
 ```
 
-### 2. Design for Failure
-
-Assume that components can fail.
+Do not start with:
 
 ```text
-Component Failure
-       ↓
-Can the application continue?
-       ↓
-If not → Introduce resilience
+"I know Azure Service X,
+so I will use Azure Service X."
 ```
 
-### 3. Minimize Single Points of Failure
-
-Identify critical components and determine whether their failure can interrupt the solution.
-
-### 4. Prefer Managed Services When Appropriate
-
-Managed services can reduce operational responsibilities.
-
-However, they may introduce:
-
-- Platform limitations
-- Cost considerations
-- Less infrastructure control
-
-### 5. Use Loose Coupling
-
-Components should not depend unnecessarily on each other.
+Start with:
 
 ```text
-Application A
-      ↓
-   Queue
-      ↓
-Application B
+"What does the business need?"
 ```
 
-Loose coupling can improve scalability and resiliency.
+Then determine:
 
-### 6. Automate Where Practical
+```text
+"What architecture can satisfy those requirements?"
+```
 
-Automation can improve:
+---
 
-- Consistency
-- Deployment speed
-- Repeatability
-- Reliability
+# 🎯 Practical Exercise
 
-Infrastructure as Code and CI/CD are important parts of modern cloud architecture.
+Imagine you are designing a system for a company that has:
 
-### 7. Design for Observability
+- A web application
+- 100,000 users today
+- Expected growth to 1 million users
+- Customers from multiple countries
+- Sensitive customer information
+- A requirement for high availability
+- A requirement for disaster recovery
+- Limited operations staff
 
-A production solution should provide visibility into:
+Before selecting any Azure service, write down:
 
-- Health
-- Performance
-- Errors
-- Logs
-- Metrics
-- Dependencies
+### 1. Business Goals
 
-### 8. Consider Security at Every Layer
+What does the company want to achieve?
 
-Security should be included across:
+### 2. Requirements
+
+What must the system provide?
+
+### 3. Constraints
+
+What limitations must the architecture work within?
+
+### 4. Architecture Areas
+
+Which areas need architectural decisions?
 
 ```text
 Identity
 Network
-Application
-Data
-Infrastructure
-Monitoring
-Governance
-```
-
-### 9. Consider Cost Early
-
-Cost should be evaluated during architecture design, not after deployment.
-
-### 10. Design for Change
-
-Business requirements and workloads change.
-
-A good architecture should be able to evolve without requiring unnecessary redesign.
-
----
-
-## 🔗 How AZ-104, AZ-305 and DevOps Connect
-
-It is important to understand the relationship between Azure administration, architecture, and DevOps.
-
-```text
-AZ-104
-Azure Administration
-        ↓
-Understand Azure Resources
-        ↓
-AZ-305
-Solution Architecture
-        ↓
-Design the Azure Solution
-        ↓
-DevOps
-Automation + Delivery
-        ↓
-Deploy and Operate
-```
-
-### AZ-104
-
-Focuses more on:
-
-- Managing Azure resources
-- Configuring services
-- Identity administration
-- Networking administration
-- Storage administration
-- Monitoring
-- Azure resource management
-
-### AZ-305
-
-Focuses more on:
-
-- Requirements
-- Architecture
-- Service selection
-- Design decisions
-- Trade-offs
-- High availability
-- Disaster recovery
-- Security
-- Scalability
-- Cost
-- Enterprise architecture
-
-### DevOps
-
-Focuses more on:
-
-- Source control
-- CI/CD
-- Infrastructure as Code
-- Automated testing
-- Deployment automation
-- Containers
-- Release management
-- Operational automation
-
-Together:
-
-```text
-                    Cloud Solution
-                         │
-          ┌──────────────┼──────────────┐
-          │              │              │
-       AZ-104         AZ-305         DevOps
-     Administer      Architect       Automate
-          │              │              │
-          └──────────────┼──────────────┘
-                         ↓
-               Production Solution
-```
-
----
-
-## 🧪 Practical Exercise
-
-Before moving to the next topic, try designing a simple architecture for the following scenario.
-
-### Scenario
-
-A company wants to build an online employee portal.
-
-Requirements:
-
-- 5,000 employees
-- Employees access the application through a web browser
-- The application stores employee information
-- The application should be highly available
-- Sensitive employee data must be protected
-- The application should support future growth
-- The company wants to minimize operational overhead
-- The architecture should be monitored
-- The solution should have a backup and recovery strategy
-
-### Your Task
-
-Identify:
-
-1. Business requirements
-2. Technical requirements
-3. Constraints
-4. Application architecture
-5. Compute service
-6. Database service
-7. Network architecture
-8. Identity solution
-9. Security controls
-10. Monitoring solution
-11. Backup strategy
-12. High availability strategy
-13. Disaster recovery strategy
-14. Cost considerations
-15. Alternative solutions
-16. Architecture trade-offs
-
-Do **not** immediately choose Azure services.
-
-First understand the requirements.
-
-Then design the architecture.
-
-Finally select the appropriate Azure services.
-
----
-
-## 💡 Architect Thinking Exercise
-
-Consider the following question:
-
-> A company says, "We need Azure Kubernetes Service."
-
-Should the architect immediately create an AKS architecture?
-
-**No.**
-
-The architect should ask:
-
-```text
-Why AKS?
-   ↓
-What problem are we solving?
-   ↓
-What type of application?
-   ↓
-Do we require Kubernetes?
-   ↓
-Do we need container orchestration?
-   ↓
-What is the expected scale?
-   ↓
-What are the availability requirements?
-   ↓
-What are the team's Kubernetes skills?
-   ↓
-What is the operational overhead?
-   ↓
-What is the budget?
-   ↓
-Would another service satisfy the requirements?
-```
-
-Possible alternatives might include:
-
-- Azure App Service
-- Azure Container Apps
-- Azure Container Instances
-- Virtual Machines
-
-The architect's responsibility is to select the **best-fit solution**, not automatically use the requested technology.
-
----
-
-## 🎯 Key Principles to Remember
-
-1. **Start with the business requirement.**
-2. **Convert business requirements into technical requirements.**
-3. **Identify constraints before selecting technologies.**
-4. **Design the architecture before selecting services.**
-5. **Understand why a service is being selected.**
-6. **Always consider alternatives.**
-7. **Understand architecture trade-offs.**
-8. **Design for failure.**
-9. **Avoid unnecessary single points of failure.**
-10. **Consider security from the beginning.**
-11. **Consider scalability and performance.**
-12. **Consider cost during the design phase.**
-13. **Design for observability and operations.**
-14. **Design for current requirements and future growth.**
-15. **Avoid unnecessary complexity and over-engineering.**
-16. **Document important architecture decisions.**
-
----
-
-## 🔑 Key Takeaways
-
-```text
-Solution Architecture
-        ↓
-Understand the Business
-        ↓
-Identify Requirements
-        ↓
-Identify Constraints
-        ↓
-Define Technical Requirements
-        ↓
-Design the Solution
-        ↓
-Select Azure Services
-        ↓
-Evaluate Alternatives
-        ↓
-Analyze Trade-offs
-        ↓
-Validate Security
-        ↓
-Validate Reliability
-        ↓
-Validate Performance
-        ↓
-Validate Scalability
-        ↓
-Validate Cost
-        ↓
-Implement
-        ↓
-Monitor
-        ↓
-Improve
-```
-
-> **A Solutions Architect does not simply choose Azure services. A Solutions Architect designs a complete solution that solves a business problem while balancing security, reliability, performance, scalability, operations, and cost.**
-
----
-
-## 📚 Summary
-
-Solution architecture is about making **technology decisions that satisfy business requirements**.
-
-The architect must understand the complete solution rather than focusing on a single Azure service.
-
-A strong architecture considers:
-
-```text
-Business
-   ↓
-Requirements
-   ↓
-Architecture
-   ↓
-Identity
-   ↓
-Networking
-   ↓
-Compute
-   ↓
-Application
-   ↓
-Messaging
-   ↓
-Data
-   ↓
 Security
-   ↓
+Compute
+Application
+Database
+Storage
 Monitoring
-   ↓
-Availability
-   ↓
-Disaster Recovery
-   ↓
+Business Continuity
+Governance
 Cost
 ```
 
-The most important mindset is:
+### 5. Architecture
 
-> **Requirements first. Architecture second. Services third.**
+Draw a high-level architecture showing the major components and their relationships.
 
----
+Do **not** worry about selecting the exact Azure services yet.
 
-## 📌 Final Concept
-
-```text
-Business Problem
-       ↓
-Business Goals
-       ↓
-Requirements
-       ↓
-Constraints
-       ↓
-Technical Requirements
-       ↓
-Architecture Design
-       ↓
-Alternative Solutions
-       ↓
-Trade-off Analysis
-       ↓
-Azure Service Selection
-       ↓
-Security + Reliability
-       ↓
-Performance + Scalability
-       ↓
-Cost + Operations
-       ↓
-Implementation
-       ↓
-Monitoring + Review
-       ↓
-Improvement
-```
-
-> **A good Solutions Architect starts with the problem, not the technology.**
-
-> **The best architecture is not the most complicated architecture. It is the architecture that satisfies the requirements with the right balance of security, reliability, performance, scalability, operational simplicity, and cost.**
+That decision-making process will be covered in the upcoming Fundamentals topics.
 
 ---
 
-## 📚 What's Next?
+# 📌 Key Takeaways
 
-In the next section, we will explore the **role and responsibilities of an Azure Solutions Architect** and understand how architects work with stakeholders, analyze requirements, evaluate options, make architecture decisions, and communicate solutions.
-
-📂 **[Next → Azure Solutions Architect Role](../Azure%20Solutions%20Architect%20Role/)**
+- Solution architecture connects **business requirements with technology solutions**.
+- Architecture focuses on the **complete solution**, not individual Azure services.
+- A Solutions Architect thinks about the system as a whole.
+- Architecture is different from detailed design and implementation.
+- Azure provides many architectural choices, but the correct choice depends on requirements.
+- Architecture decisions affect multiple areas of a solution.
+- Architecture is a continuous lifecycle rather than a one-time activity.
+- AZ-305 focuses heavily on **design decisions and solution architecture**.
+- Start with the **business problem**, not the Azure service.
+- The goal of architecture is to create a solution that provides the required business outcome within its constraints.
 
 ---
+
+## 🔗 What's Next?
+
+Now that we understand **what solution architecture is**, the next topic focuses on the person responsible for creating and guiding that architecture.
+
+➡️ **Next: [1.2 Solutions Architect Role and Responsibilities](../1.2-Solutions-Architect-Role-and-Responsibilities/)**
