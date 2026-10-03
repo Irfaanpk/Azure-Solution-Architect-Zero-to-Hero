@@ -107,7 +107,7 @@ Resource Utilization
 Cost Management
 ```
 
-Cost optimization does not simply mean choosing the cheapest service. A lower-cost decision can negatively affect reliability, security, performance, or operations. :chatgpt-content-reference{index="3"}
+Cost optimization does not simply mean choosing the cheapest service. A lower-cost decision can negatively affect reliability, security, performance, or operations.
 
 ---
 
@@ -153,7 +153,7 @@ Key areas include:
 - Load testing
 - Resource utilization
 
-A workload should be designed to respond appropriately to changes in demand rather than being permanently over-provisioned. :chatgpt-content-reference{index="4"}
+A workload should be designed to respond appropriately to changes in demand rather than being permanently over-provisioned.
 
 ---
 
@@ -181,7 +181,7 @@ Monitoring
 
 The workload should be evaluated as an integrated system because decisions made in one component can affect other components.
 
-Microsoft defines a well-architected workload around its functional and nonfunctional requirements, design decisions, operational behavior, measurable outcomes, and ability to adapt over time. :chatgpt-content-reference{index="5"}
+Microsoft defines a well-architected workload around its functional and nonfunctional requirements, design decisions, operational behavior, measurable outcomes, and ability to adapt over time.
 
 ---
 
@@ -239,7 +239,7 @@ Provide reusable approaches for solving common architectural problems.
 
 ### Maturity
 
-Provides a way to progressively improve a workload as its requirements and operational maturity evolve. :chatgpt-content-reference{index="6"}
+Provides a way to progressively improve a workload as its requirements and operational maturity evolve.
 
 ---
 
@@ -319,7 +319,7 @@ Redesign When Required
   └───────────────↺
 ```
 
-Microsoft recommends using the framework iteratively to understand workload maturity and continuously improve the architecture. :chatgpt-content-reference{index="7"}
+Microsoft recommends using the framework iteratively to understand workload maturity and continuously improve the architecture.
 
 ---
 
@@ -334,7 +334,7 @@ These resources serve different purposes.
 | Azure Service Documentation | Detailed service capabilities and implementation |
 | Azure Well-Architected Review | Assess a workload against WAF principles |
 
-The Architecture Center uses WAF principles to guide architecture choices and provides reference architectures and design patterns. :chatgpt-content-reference{index="8"}
+The Architecture Center uses WAF principles to guide architecture choices and provides reference architectures and design patterns.
 
 ---
 
@@ -385,7 +385,7 @@ For a real workload, the process can be structured as:
 8. Review Again
 ```
 
-The assessment should focus on the practices that are relevant to the workload and its business goals. :chatgpt-content-reference{index="9"}
+The assessment should focus on the practices that are relevant to the workload and its business goals.
 
 ---
 
