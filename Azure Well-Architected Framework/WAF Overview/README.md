@@ -18,7 +18,7 @@ Architecture Decisions
 Review & Improve
 ```
 
-The framework is intended to support architectural decision-making rather than prescribe a single architecture for every workload. :chatgpt-content-reference{index="1"}
+The framework is intended to support architectural decision-making rather than prescribe a single architecture for every workload.
 
 ---
 
