@@ -34,7 +34,7 @@ Azure Well-Architected Framework is built around five pillars:
 | Operational Excellence | Operations, observability, automation, and deployment |
 | Performance Efficiency | Scalability, capacity, and workload performance |
 
-The pillars are interconnected. Improving one area can affect another, so architecture decisions should consider the workload as a whole. :chatgpt-content-reference{index="2"}
+The pillars are interconnected. Improving one area can affect another, so architecture decisions should consider the workload as a whole.
 
 ---
 
