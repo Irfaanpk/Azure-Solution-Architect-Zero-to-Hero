@@ -26,13 +26,13 @@ Recovery
 Continuous Improvement
 ```
 
-A reliable workload is designed with the expectation that failures can occur. The objective is to reduce the likelihood and impact of failures and restore service within agreed recovery targets. :chatgpt-content-reference{index="1"}
+A reliable workload is designed with the expectation that failures can occur. The objective is to reduce the likelihood and impact of failures and restore service within agreed recovery targets.
 
 ---
 
 ## 2. Reliability Design Principles
 
-Microsoft's Reliability pillar is based on five core design principles:
+The Reliability pillar is based on five core design principles:
 
 | Principle | Focus |
 |---|---|
@@ -42,7 +42,7 @@ Microsoft's Reliability pillar is based on five core design principles:
 | Design for operations | Detect, understand, and respond to failures |
 | Keep it simple | Avoid unnecessary architectural complexity |
 
-These principles should influence the workload throughout its design, development, deployment, and operational lifecycle. :chatgpt-content-reference{index="2"}
+These principles should influence the workload throughout its design, development, deployment, and operational lifecycle.
 
 ---
 
@@ -71,7 +71,7 @@ Reliability Targets
 Architecture Decisions
 ```
 
-Reliability targets should be documented and agreed upon with the relevant stakeholders. :chatgpt-content-reference{index="3"}
+Reliability targets should be documented and agreed upon with the relevant stakeholders.
 
 ---
 
@@ -91,8 +91,6 @@ Workload
 ```
 
 This allows reliability investments to be prioritized where they provide the greatest business value.
-
-Microsoft recommends identifying and rating user and system flows based on business requirements. :chatgpt-content-reference{index="4"}
 
 ---
 
@@ -121,7 +119,7 @@ Testing
 Validation
 ```
 
-Targets should be realistic, measurable, and derived from business requirements. :chatgpt-content-reference{index="5"}
+Targets should be realistic, measurable, and derived from business requirements.
 
 ---
 
@@ -134,7 +132,7 @@ For example:
 ```text
 Business Requirement
         ↓
-99.9% Availability Target
+Availability Target
         ↓
 Architecture Strategy
         ↓
@@ -147,7 +145,7 @@ The architect should evaluate whether the proposed architecture and its dependen
 
 ## 7. Failure Mode Analysis
 
-Failure Mode Analysis (FMA) is used to identify how components can fail and what impact those failures can have on the workload.
+Failure Mode Analysis is used to identify how components can fail and what impact those failures can have on the workload.
 
 ```text
 Component
@@ -166,11 +164,11 @@ Example:
 | Component | Failure | Potential Impact | Mitigation |
 |---|---|---|---|
 | Application instance | Instance failure | Requests fail | Multiple instances |
-| Database | Service disruption | Data unavailable | Appropriate redundancy/recovery |
+| Database | Service disruption | Data unavailable | Appropriate redundancy and recovery |
 | Network dependency | Connectivity failure | Service interruption | Resilient connectivity |
-| External API | Dependency failure | Feature unavailable | Timeout / retry / fallback |
+| External API | Dependency failure | Feature unavailable | Timeout, retry, or fallback |
 
-Failure analysis should focus on realistic failure scenarios rather than assuming that components will always operate normally. :chatgpt-content-reference{index="6"}
+Failure analysis should focus on realistic failure scenarios rather than assuming that components will always operate normally.
 
 ---
 
@@ -209,9 +207,9 @@ The appropriate strategy depends on the workload's critical flows and reliabilit
 
 Fault isolation limits the effect of a failure.
 
-```text
-Without Isolation
+Without isolation:
 
+```text
 Failure
    ↓
 Entire Workload
@@ -262,7 +260,7 @@ Redundancy can be applied at different levels, including:
 - Availability zones
 - Regions
 
-Microsoft recommends adding redundancy particularly for critical flows when required to meet reliability targets. :chatgpt-content-reference{index="7"}
+Redundancy should be introduced where it is required to meet reliability objectives.
 
 ---
 
@@ -280,11 +278,11 @@ Scale Out
 Maintain Service
 ```
 
-Scaling strategies should be based on actual or predicted workload demand and should minimize unnecessary manual intervention. :chatgpt-content-reference{index="8"}
+Scaling strategies should be based on workload demand and should minimize unnecessary manual intervention.
 
 ---
 
-## 12. Self-Healing and Self-Preservation
+## 12. Self-Healing
 
 A resilient workload can automatically respond to certain failures.
 
@@ -298,7 +296,7 @@ Automated Remediation
 Recovery
 ```
 
-Examples of self-healing behavior include:
+Examples include:
 
 - Restarting unhealthy components
 - Replacing failed instances
@@ -306,7 +304,7 @@ Examples of self-healing behavior include:
 - Automatically scaling resources
 - Recovering from transient failures
 
-Self-healing should be supported by reliable monitoring and well-defined failure conditions. :chatgpt-content-reference{index="9"}
+Self-healing should be supported by reliable monitoring and well-defined failure conditions.
 
 ---
 
@@ -333,14 +331,14 @@ Retry
 Success
 ```
 
-However, retries should be controlled using appropriate techniques such as:
+Retry strategies should use appropriate controls such as:
 
 - Retry limits
 - Backoff
 - Timeouts
 - Idempotency
 
-Uncontrolled retries can increase load and make an incident worse.
+Uncontrolled retries can increase system load and make an incident worse.
 
 ---
 
@@ -391,8 +389,6 @@ Recovery plans should be:
 - Accessible to operations teams
 - Aligned with RTO and RPO
 
-Microsoft specifically recommends structured and tested disaster recovery plans that cover both individual components and the workload as a whole. :chatgpt-content-reference{index="10"}
-
 ---
 
 ## 16. Reliability Testing
@@ -424,7 +420,7 @@ Compare With Target
 Improve
 ```
 
-Microsoft recommends testing resiliency and availability scenarios to verify that workloads can withstand faults, scale under demand, and recover within defined targets. :chatgpt-content-reference{index="11"}
+The objective is to verify that the workload can withstand faults, recover appropriately, and meet its defined reliability requirements.
 
 ---
 
@@ -456,7 +452,7 @@ Incident Response
 Improvement
 ```
 
-Reliability measurements should be retained and accessible for detection, response, and post-incident analysis. :chatgpt-content-reference{index="12"}
+Reliability measurements should be available for detection, response, and post-incident analysis.
 
 ---
 
@@ -491,7 +487,7 @@ Important considerations include:
 - Failback
 - Recovery testing
 
-Detailed Azure disaster recovery architectures will be covered in the dedicated architecture sections later in this repository.
+Detailed Azure disaster recovery architectures will be covered in dedicated architecture sections later in this repository.
 
 ---
 
@@ -509,7 +505,9 @@ More Failure Points
 More Operational Complexity
 ```
 
-Microsoft recommends keeping architectures simple while still meeting the required reliability objectives. Simplicity should not, however, introduce a single point of failure. :chatgpt-content-reference{index="13"}
+The goal is to use the simplest architecture that can satisfy the required reliability objectives.
+
+Simplicity should not introduce a single point of failure.
 
 ---
 
@@ -525,20 +523,18 @@ Reliability decisions can affect other WAF pillars.
 | Frequent testing | Better confidence | Testing effort and cost |
 | Self-healing | Faster recovery | Additional automation complexity |
 
-Microsoft explicitly recommends evaluating reliability decisions against Security, Cost Optimization, Operational Excellence, and Performance Efficiency. :chatgpt-content-reference{index="14"}
+An architect must evaluate reliability improvements against the overall workload requirements.
 
 ---
 
 ## 21. Azure Capabilities for Reliability
 
-Azure provides services and platform capabilities that can support reliability strategies.
-
-Examples include:
+Azure provides several services and platform capabilities that can support reliability strategies.
 
 | Capability | Purpose |
 |---|---|
 | Availability Zones | Isolate resources across physically separate zones |
-| Azure regions | Provide geographic deployment options |
+| Azure Regions | Provide geographic deployment options |
 | Azure Load Balancer | Distribute network traffic |
 | Azure Front Door | Global application delivery and failover capabilities |
 | Azure Monitor | Monitoring and alerting |
@@ -547,7 +543,7 @@ Examples include:
 | Azure Chaos Studio | Fault injection and resilience testing |
 | Azure Advisor | Reliability recommendations |
 
-The appropriate service depends on the workload requirements and architecture. Azure's reliability documentation provides service-specific reliability guidance and platform capabilities. :chatgpt-content-reference{index="15"}
+The appropriate service depends on the workload requirements and architecture.
 
 ---
 
@@ -645,7 +641,7 @@ Single Instance
 Single Failure Point
 ```
 
-design:
+Design:
 
 ```text
                   Load Balancer
@@ -667,7 +663,7 @@ Ask:
 - How is the incident detected?
 - Does the architecture meet the target?
 
-This is the type of reasoning expected from a Solutions Architect.
+This type of analysis is central to reliability-focused architecture.
 
 ---
 
@@ -684,7 +680,7 @@ This is the type of reasoning expected from a Solutions Architect.
 - Observability is essential for detecting and understanding failures.
 - Disaster recovery plans should be documented and tested.
 - Simplicity reduces unnecessary failure points and operational complexity.
-- Reliability decisions should always be evaluated against the other WAF pillars.
+- Reliability decisions should be evaluated against the other WAF pillars.
 - Azure provides platform capabilities that can support reliability, but the correct architecture depends on workload requirements.
 
 ---
@@ -700,7 +696,7 @@ Before completing this topic, you should be able to explain:
 - [ ] Reliability and recovery targets
 - [ ] Failure Mode Analysis
 - [ ] Redundancy and fault isolation
-- [ ] Self-healing and self-preservation
+- [ ] Self-healing
 - [ ] Retry and transient fault handling
 - [ ] Graceful degradation
 - [ ] Disaster recovery planning
