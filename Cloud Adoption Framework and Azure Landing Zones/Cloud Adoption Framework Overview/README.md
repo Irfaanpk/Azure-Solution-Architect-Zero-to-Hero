@@ -669,5 +669,3 @@ Before completing this topic, you should be able to:
 - [ ] Explain the importance of an Azure foundation
 - [ ] Describe a high-level cloud adoption journey
 ```
-
-This keeps **3.1 as the overview only**. We won't duplicate the detailed material here; **3.2–3.15 will progressively go deeper into each area**.
