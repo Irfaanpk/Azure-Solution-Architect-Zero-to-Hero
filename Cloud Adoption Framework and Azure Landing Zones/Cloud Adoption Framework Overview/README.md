@@ -1,649 +1,158 @@
 # Cloud Adoption Framework Overview
 
-## 1. Introduction
+## 1. Architectural Context
 
-The **Microsoft Cloud Adoption Framework (CAF) for Azure** is a collection of proven guidance, methodologies, and best practices that helps organizations plan, adopt, govern, secure, and manage Azure.
+The **Microsoft Cloud Adoption Framework (CAF)** is a collection of guidance, methodologies, and best practices that helps organizations adopt Azure in alignment with business objectives, organizational capabilities, and technical requirements.
 
-CAF provides a structured approach for organizations to move from their current environment toward a well-managed Azure environment while aligning cloud adoption with business objectives.
+For solution architects, CAF provides the strategic and operational context within which Azure architectures are designed, deployed, governed, and improved.
 
-The framework is designed to help organizations:
+CAF is not an Azure service, a deployment template, or a mandatory sequence of implementation steps. It is a framework for making cloud adoption decisions consistently across workloads, teams, and organizational boundaries.
 
-- Define a clear cloud adoption strategy
-- Prepare people, processes, and technology
-- Establish an Azure foundation
-- Migrate and modernize workloads
-- Build cloud-native solutions
-- Govern Azure environments
-- Secure the cloud estate
-- Manage and optimize Azure operations
+The framework helps organizations address questions such as:
 
----
+- What business outcomes should cloud adoption deliver?
+- Which workloads should be migrated, modernized, retained, or retired?
+- What platform capabilities must exist before workloads are deployed?
+- How should security, governance, and operational responsibilities be established?
+- How should the organization measure and improve adoption outcomes?
 
-## 2. Why Cloud Adoption Framework?
+## 2. CAF Methodologies
 
-Moving workloads to the cloud is not only a technical activity.
+CAF organizes cloud adoption guidance into seven methodologies. Each addresses a different aspect of the adoption lifecycle.
 
-Organizations also need to make decisions about:
+```mermaid
+flowchart TD
+    A["Strategy<br/>Define business motivations and outcomes"]
+    B["Plan<br/>Align people, workloads, and adoption plans"]
+    C["Ready<br/>Prepare the cloud environment"]
+    D["Adopt<br/>Migrate and innovate"]
+    E["Govern<br/>Manage organizational risk and compliance"]
+    F["Secure<br/>Protect cloud resources and workloads"]
+    G["Manage<br/>Operate and improve cloud services"]
 
-- Business objectives
-- People and skills
-- Operating models
-- Governance
-- Security
-- Compliance
-- Cost
-- Architecture
-- Workload migration
-- Cloud operations
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    D --> F
+    D --> G
 
-Without a structured approach, organizations can encounter problems such as:
-
-- Uncontrolled cloud spending
-- Inconsistent resource deployment
-- Security gaps
-- Poor governance
-- Complex environments
-- Unclear ownership
-- Difficult workload migrations
-- Operational challenges
-
-CAF provides guidance to help organizations make these decisions in a structured way.
-
----
-
-## 3. CAF and Azure Adoption
-
-CAF provides a roadmap for Azure adoption.
-
-The current Azure adoption methodology contains seven major phases:
-
-```text
-Strategy
-   ↓
-Plan
-   ↓
-Ready
-   ↓
-Adopt
-   ↓
-Govern
-   ↓
-Secure
-   ↓
-Manage
+    E -. "Continuous governance" .-> D
+    F -. "Continuous security" .-> D
+    G -. "Operational feedback" .-> B
 ```
 
-These phases help organizations establish an Azure foundation and create operational standards that can support workloads over time.
+The diagram represents the relationship between the methodologies, not a rigid sequence. Governance, security, and management must evolve throughout cloud adoption rather than being introduced only after migration.
 
----
-
-## 4. CAF Adoption Phases
-
-| Phase | Primary Question | Purpose |
+| Methodology | Architectural purpose | Detailed coverage |
 |---|---|---|
-| Strategy | What should our Azure adoption look like? | Define business justification and desired outcomes |
-| Plan | How will we prepare for Azure adoption? | Prepare people, processes, skills, and workload plans |
-| Ready | How will we build our Azure foundation? | Establish the Azure landing zone and platform foundation |
-| Adopt | How will we move and build workloads? | Migrate, modernize, and build cloud-native workloads |
-| Govern | How will we control Azure? | Establish governance, policies, and organizational standards |
-| Secure | How will we protect Azure? | Establish and continuously improve security posture |
-| Manage | How will we operate Azure? | Monitor, operate, and optimize the Azure environment |
+| Strategy | Establish business motivations, desired outcomes, and strategic direction | [3.2 CAF Strategy](../CAF%20Strategy/) |
+| Plan | Align skills, workload priorities, organizational readiness, and adoption activities | [3.3 CAF Plan](../CAF%20Plan/) |
+| Ready | Prepare the Azure environment and foundational platform capabilities | [3.4 CAF Ready](../CAF%20Ready/) |
+| Adopt | Execute workload migration and cloud-native innovation | [3.5 CAF Adopt](../CAF%20Adopt/) |
+| Govern | Establish controls for risk, compliance, cost, and organizational consistency | [3.6 CAF Govern](../CAF%20Govern/) |
+| Secure | Integrate security capabilities and risk management across the cloud environment | [3.7 CAF Secure](../CAF%20Secure/) |
+| Manage | Operate workloads, monitor service health, and improve operational outcomes | [3.8 CAF Manage](../CAF%20Manage/) |
 
-Microsoft describes **Adopt** through workload approaches such as migration, modernization, and cloud-native development.
+## 3. CAF as an Architecture Decision Framework
 
-```text
-                    Cloud Adoption Framework
-                              |
-        ┌─────────────────────┼─────────────────────┐
-        ↓                     ↓                     ↓
-     Strategy               Plan                  Ready
-        ↓                     ↓                     ↓
-     Business              People              Azure Foundation
-     Outcomes              Processes           Landing Zone
-        └─────────────────────┼─────────────────────┘
-                              ↓
-                            Adopt
-                              ↓
-                 ┌────────────┼────────────┐
-                 ↓            ↓            ↓
-              Migrate     Modernize    Cloud-Native
-                 └────────────┼────────────┘
-                              ↓
-                    ┌─────────┴─────────┐
-                    ↓                   ↓
-                 Govern               Secure
-                    └─────────┬─────────┘
-                              ↓
-                           Manage
-```
+CAF helps architects connect organizational objectives with the technical and operational decisions required to achieve them.
 
----
+Consider an enterprise moving several business-critical applications to Azure. The architecture cannot be determined solely by selecting compute, networking, and database services.
 
-## 5. Strategy
+The architect must also evaluate:
 
-The Strategy phase defines why the organization is adopting Azure and what it expects to achieve.
+- Business priorities and acceptable transformation risk.
+- Application dependencies and migration constraints.
+- Organizational identity and access requirements.
+- Platform readiness and subscription boundaries.
+- Regulatory obligations and security controls.
+- Operational ownership, monitoring, and recovery expectations.
 
-Key considerations include:
+CAF provides the adoption context for these decisions. Detailed technical architectures are then developed using workload requirements, Azure service capabilities, and relevant architectural guidance.
 
-- Business motivations
-- Business outcomes
-- Cloud investment priorities
-- Executive sponsorship
-- Organizational goals
-- Cloud operating model
-- Strategic priorities
+## 4. CAF and Azure Landing Zones
 
-The objective is to connect Azure adoption with measurable business outcomes.
+**Azure landing zones** provide the architectural foundation for deploying and operating workloads in Azure at scale.
 
-Detailed strategy planning is covered in **3.2 CAF Strategy**.
+CAF and Azure landing zones are related but serve different purposes:
 
----
+| Dimension | Cloud Adoption Framework | Azure landing zones |
+|---|---|---|
+| Primary purpose | Guide cloud adoption and organizational transformation | Establish a scalable Azure environment for workloads |
+| Scope | Strategy, planning, readiness, adoption, governance, security, and management | Identity, resource organization, networking, security, management, and platform capabilities |
+| Main question | How should the organization adopt and operate cloud capabilities? | How should the Azure environment be structured and configured? |
+| Architectural output | Adoption direction, priorities, operating practices, and governance approach | Platform architecture and workload hosting foundations |
 
-## 6. Plan
+CAF provides the broader adoption guidance. Landing zones translate relevant requirements into an Azure architecture that supports enterprise workloads.
 
-The Plan phase converts the cloud strategy into an actionable adoption plan.
+Landing zones are covered in detail in [3.9 Azure Landing Zones](../Azure%20Landing%20Zones/).
 
-It considers:
+## 5. CAF and the Well-Architected Framework
 
-- People
-- Skills
-- Workloads
-- Migration priorities
-- Modernization priorities
-- Organizational readiness
-- Cloud adoption timeline
-- Responsibilities
+CAF and the Azure Well-Architected Framework (WAF) complement one another but should not be treated as interchangeable.
 
-The plan should identify what needs to be moved, when it should be moved, and what resources are required.
+| Framework | Focus | Typical architectural question |
+|---|---|---|
+| Cloud Adoption Framework | Enterprise cloud adoption, organizational readiness, governance, and operations | How should the organization establish and evolve its cloud environment? |
+| Well-Architected Framework | Workload-level architecture quality | How should this workload balance reliability, security, cost optimization, operational excellence, and performance efficiency? |
 
-Detailed planning is covered in **3.3 CAF Plan**.
+For example, CAF may guide an organization toward establishing a standardized Azure platform. WAF can then help evaluate whether an application deployed on that platform meets its reliability, security, cost, operational, and performance requirements.
 
----
+Refer to [Section 2: Azure Well-Architected Framework](../Azure%20Well-Architected%20Framework/) for workload-level architecture quality.
 
-## 7. Ready
+## 6. Applying CAF in an Enterprise Environment
 
-The Ready phase prepares the Azure environment for workload adoption.
+Consider an organization adopting Azure across development, testing, and production environments.
 
-A major outcome of this phase is the design and implementation of an **Azure landing zone**.
+The organization needs to standardize how teams deploy workloads without preventing teams from meeting application-specific requirements.
 
-The landing zone provides the foundation required to:
+CAF informs the broader adoption approach:
 
-- Organize Azure resources
-- Apply governance
-- Establish security controls
-- Provide networking
-- Manage identities
-- Support workloads
-- Scale the Azure environment
+1. Establish business objectives and prioritize workloads.
+2. Assess organizational readiness, skills, and dependencies.
+3. Prepare the Azure platform and landing zone architecture.
+4. Adopt workloads through appropriate migration or modernization approaches.
+5. Apply governance and security controls across the environment.
+6. Establish operational ownership and continuously evaluate outcomes.
 
-Detailed preparation is covered in **3.4 CAF Ready**.
+These activities may overlap and repeat as new workloads, risks, and requirements emerge.
 
----
+The resulting architecture should provide consistency where enterprise-wide standards are necessary while preserving flexibility where workload-specific requirements justify different designs.
 
-## 8. Adopt
+## 7. Architectural Boundaries
 
-The Adopt phase focuses on bringing workloads into Azure.
+CAF provides guidance for making adoption decisions, but it does not eliminate the need for detailed engineering.
 
-Microsoft describes three major workload adoption approaches:
-
-### Migration
-
-Move existing workloads from:
-
-- On-premises environments
-- Other cloud platforms
-- Existing hosting environments
-
-### Modernization
-
-Improve existing workloads by using Azure capabilities to better satisfy business requirements.
-
-### Cloud-Native
-
-Build new applications and capabilities using cloud-native Azure services and architectural patterns.
-
-```text
-Existing Workload
-      |
-      ├── Migration
-      |
-      └── Modernization
-
-New Workload
-      |
-      └── Cloud-Native Development
-```
-
-Detailed workload adoption is covered in **3.5 CAF Adopt**.
-
----
-
-## 9. Govern
-
-The Govern phase establishes controls for the Azure environment.
-
-Governance helps organizations manage:
-
-- Compliance
-- Resource organization
-- Policies
-- Cost
-- Security requirements
-- Organizational standards
-- Risk
-
-Governance should be applied consistently across the Azure environment rather than being implemented separately for every workload.
-
-Detailed governance is covered in **3.6 CAF Govern**.
-
----
-
-## 10. Secure
-
-The Secure methodology provides guidance for protecting the Azure cloud estate.
-
-Security should not be treated as a single step after deployment.
-
-It should be considered throughout the cloud adoption lifecycle.
-
-```text
-Strategy
-   ↓
-Plan
-   ↓
-Ready
-   ↓
-Adopt
-   ↓
-Govern
-   ↓
-Secure
-   ↓
-Manage
-```
-
-Security considerations include:
-
-- Identity protection
-- Least-privilege access
-- Network protection
-- Data protection
-- Security monitoring
-- Incident preparedness
-- Threat detection
-- Security posture improvement
-
-Microsoft's current CAF guidance treats security as an end-to-end concern across the adoption lifecycle.
-
-Detailed security adoption is covered separately within the CAF Secure methodology.
-
----
-
-## 11. Manage
-
-The Manage phase focuses on operating and optimizing the Azure environment after workloads are deployed.
-
-It includes:
-
-- Monitoring
-- Operations
-- Service health
-- Performance management
-- Business continuity
-- Operational processes
-- Cost management
-- Continuous improvement
-
-The objective is to maintain the health and business value of the Azure environment over time.
-
-Detailed management practices are covered in **3.7 CAF Manage**.
-
----
-
-## 12. CAF Is Not a One-Time Process
-
-Cloud adoption is an ongoing journey.
-
-Organizations continuously:
-
-```text
-Plan
-  ↓
-Build
-  ↓
-Adopt
-  ↓
-Operate
-  ↓
-Measure
-  ↓
-Improve
-  ↓
-Repeat
-```
-
-Business requirements, workloads, technologies, security requirements, and organizational priorities change over time.
-
-CAF therefore supports continuous improvement rather than a one-time cloud migration.
-
----
-
-## 13. CAF Roles and Responsibilities
-
-Successful cloud adoption requires collaboration between different organizational teams.
-
-Typical stakeholders include:
-
-| Role | Responsibility |
+| CAF helps establish | Requires further architecture design |
 |---|---|
-| Business Leaders | Define business outcomes and investment priorities |
-| Technology Leaders | Define technology strategy and cloud direction |
-| Cloud Architects | Design cloud architecture and adoption approaches |
-| Platform Teams | Build and operate the Azure foundation |
-| Security Teams | Define and maintain security requirements |
-| Governance Teams | Establish organizational controls and compliance |
-| Operations Teams | Monitor and manage Azure environments |
-| Workload Teams | Build, migrate, and operate applications |
+| Business outcomes and adoption priorities | Workload-specific service selection |
+| Organizational governance requirements | Azure Policy definitions and assignment design |
+| Cloud readiness objectives | Landing zone implementation and network topology |
+| Security and risk management direction | Identity architecture, threat controls, and security configuration |
+| Operational requirements | Monitoring architecture, alerting, recovery, and support procedures |
+| Migration and modernization direction | Application refactoring, data migration, and deployment design |
 
-The exact organizational structure depends on the size and operating model of the organization.
+Architects should use CAF to understand the context and constraints of a solution, then validate specific designs against Microsoft documentation, workload requirements, service limits, and operational realities.
 
----
+## 8. Relevance to AZ-305 Solution Architecture
 
-## 14. CAF and Operating Model
+CAF is relevant to AZ-305 because Azure solutions must fit within the organization's broader cloud strategy, governance model, security posture, and operating capabilities.
 
-Cloud adoption requires an appropriate operating model.
+When evaluating an architecture, consider:
 
-An organization should define:
+- Whether the proposed solution supports the stated business outcomes.
+- Whether the workload fits the organization's landing zone and governance model.
+- Whether security and operational requirements are addressed from the beginning.
+- Whether the architecture can evolve as adoption priorities change.
+- Whether the design introduces unnecessary complexity or conflicts with established platform standards.
 
-- Who owns Azure resources
-- Who manages the platform
-- Who manages workloads
-- Who defines policies
-- Who handles security
-- Who manages incidents
-- Who controls cloud costs
+The objective is not to implement every CAF recommendation identically in every environment. It is to apply the relevant guidance proportionately to the organization's requirements, risk profile, and operating model.
 
-```text
-                 Azure Organization
-                        |
-        ┌───────────────┼───────────────┐
-        ↓               ↓               ↓
-     Platform        Security        Workloads
-        ↓               ↓               ↓
-    Foundation       Controls       Applications
-        └───────────────┼───────────────┘
-                        ↓
-                    Operations
-```
+## Microsoft References
 
-Clear ownership helps prevent gaps in governance, security, and operations.
-
----
-
-## 15. CAF and Azure Landing Zones
-
-One of the major outcomes of the Ready phase is an Azure landing zone.
-
-An Azure landing zone provides a standardized foundation for Azure workloads.
-
-It helps establish:
-
-- Resource organization
-- Identity and access
-- Networking
-- Governance
-- Security
-- Management
-- Platform services
-
-```text
-                 Azure Landing Zone
-                         |
-             ┌───────────┴───────────┐
-             ↓                       ↓
-      Platform Foundation      Workload Environment
-             ↓                       ↓
-       Shared Services          Applications
-       Governance               Data
-       Security                 Compute
-       Networking               Storage
-```
-
-Landing zones will be studied in detail later in this section.
-
----
-
-## 16. CAF and Enterprise Scale
-
-CAF is particularly useful for organizations that need to operate Azure across multiple teams, subscriptions, applications, and environments.
-
-At enterprise scale, organizations need consistent approaches for:
-
-- Subscription organization
-- Management groups
-- Governance
-- Networking
-- Identity
-- Security
-- Monitoring
-- Resource organization
-- Automation
-
-CAF provides guidance for establishing this foundation.
-
----
-
-## 17. CAF Scenarios
-
-Azure adoption is the primary CAF scenario.
-
-Other CAF scenarios can build on the Azure foundation and provide guidance for specific business or technology requirements.
-
-Examples include:
-
-- Data platform adoption
-- AI adoption
-- AI agents
-- Sovereignty
-- Azure VMware Solution
-
-These scenarios can integrate with the organization's Azure landing zone and operational processes.
-
----
-
-## 18. CAF vs Azure Well-Architected Framework
-
-CAF and WAF solve different architectural problems.
-
-| Framework | Primary Focus |
-|---|---|
-| Cloud Adoption Framework | How an organization adopts, governs, secures, and operates Azure |
-| Well-Architected Framework | How individual workloads should be designed and optimized |
-
-```text
-Organization
-     |
-     ↓
-Cloud Adoption Framework
-     |
-     ↓
-Azure Foundation
-     |
-     ↓
-Landing Zones
-     |
-     ↓
-Workloads
-     |
-     ↓
-Well-Architected Framework
-```
-
-CAF focuses more on the **organization and cloud estate**, while WAF focuses more on the **quality of individual workloads**.
-
-They are complementary frameworks.
-
----
-
-## 19. CAF and AZ-305
-
-For an Azure Solutions Architect, CAF knowledge is important because enterprise architecture decisions often involve more than selecting individual Azure services.
-
-An architect may need to determine:
-
-- How subscriptions should be organized
-- Where workloads should be deployed
-- How governance should be applied
-- How networking should be structured
-- How security requirements should be enforced
-- How platform services should be centralized
-- How application teams should consume Azure
-- How the environment should scale as the organization grows
-
-These decisions form an important part of enterprise Azure architecture.
-
----
-
-## 20. High-Level CAF Architecture
-
-```text
-                    Organization
-                         |
-                         ↓
-                Cloud Strategy
-                         |
-                         ↓
-                  Adoption Plan
-                         |
-                         ↓
-                 Azure Foundation
-                         |
-                         ↓
-                 Azure Landing Zone
-                         |
-          ┌──────────────┼──────────────┐
-          ↓              ↓              ↓
-      Governance      Security       Management
-          |              |              |
-          └──────────────┼──────────────┘
-                         ↓
-                      Workloads
-                         |
-          ┌──────────────┼──────────────┐
-          ↓              ↓              ↓
-       Migrate        Modernize      Cloud-Native
-```
-
----
-
-## 21. Key Principles
-
-When applying CAF, consider the following principles:
-
-### Align Technology With Business
-
-Cloud adoption should support measurable business outcomes.
-
-### Establish a Foundation
-
-Build an appropriate Azure foundation before onboarding large numbers of workloads.
-
-### Apply Governance Early
-
-Governance should be established before the Azure environment grows significantly.
-
-### Integrate Security
-
-Security should be incorporated throughout the adoption lifecycle.
-
-### Define Clear Ownership
-
-Teams should understand their responsibilities for platform and workload operations.
-
-### Automate Where Appropriate
-
-Use automation and Infrastructure as Code to improve consistency and reduce manual effort.
-
-### Continuously Improve
-
-Cloud adoption should evolve as business and technology requirements change.
-
----
-
-## 22. Practical Lab
-
-### Scenario
-
-Your organization is planning to move its existing IT environment to Azure.
-
-The organization has:
-
-- 200 employees
-- Multiple application teams
-- Development and production environments
-- Existing on-premises applications
-- Security and compliance requirements
-- Multiple Azure workloads planned
-- A requirement for centralized governance
-
-### Lab Objectives
-
-1. Identify the organization's cloud adoption motivations.
-2. Define expected business outcomes.
-3. Identify major stakeholders.
-4. Determine required cloud skills.
-5. Categorize existing workloads.
-6. Determine which workloads should be migrated.
-7. Identify workloads suitable for modernization.
-8. Identify potential cloud-native workloads.
-9. Define initial governance requirements.
-10. Identify the requirements for an Azure foundation.
-11. Create a high-level CAF adoption roadmap.
-12. Identify which landing zone capabilities will be required.
-
-### Expected Output
-
-Create a document containing:
-
-```text
-Business Objectives
-        ↓
-Stakeholders
-        ↓
-Cloud Adoption Strategy
-        ↓
-Workload Assessment
-        ↓
-Adoption Plan
-        ↓
-Azure Foundation Requirements
-        ↓
-Landing Zone Requirements
-        ↓
-Governance Requirements
-        ↓
-Security Requirements
-        ↓
-Operations Requirements
-```
-
----
-
-## 23. Key Takeaways
-
-- Cloud Adoption Framework provides structured guidance for Azure adoption.
-- CAF connects business objectives with cloud adoption decisions.
-- The current Azure adoption methodology contains Strategy, Plan, Ready, Adopt, Govern, Secure, and Manage.
-- Strategy defines why the organization is adopting Azure.
-- Plan prepares people, processes, skills, and workloads.
-- Ready establishes the Azure foundation and landing zone.
-- Adopt focuses on migration, modernization, and cloud-native development.
-- Govern establishes organizational controls.
-- Secure protects the Azure cloud estate throughout the lifecycle.
-- Manage focuses on operating and optimizing Azure.
-- CAF supports enterprise-scale Azure adoption.
-- CAF and WAF are complementary rather than competing frameworks.
-- Azure landing zones provide the foundation for workload adoption.
-- Cloud adoption should be treated as a continuous journey.
-
----
+- [Microsoft Cloud Adoption Framework Overview](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/overview)
+- [Cloud Adoption Framework Methodologies](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/)
+- [Azure Landing Zones](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/)
+- [Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/)
+- [Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/)
